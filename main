@@ -1,0 +1,42 @@
+import sys
+
+possible_actions = ['taking up yoga.', 'sleeping eight hours a night.', 'relaxing.', 'not working on weekends.', 'spending two hours a day with friends.']
+actions_not_taken = []
+
+print("Thank you for using Eliza300, a fun therapy program.")
+print("Please describe your emotional complaint--in one punctuation-free line:")
+user_complaint = input()
+print("How many months have you experienced " + "'" + user_complaint + "'" + "?")
+how_long = int(input())
+
+if how_long > 99:
+    print("Sorry, illegal input. Eliza is quitting; run Eliza again.")
+    sys.exit()
+
+if how_long < 1:
+    print("Sorry, illegal input. Eliza is quitting; run Eliza again.")
+    sys.exit()
+
+if how_long < 3:
+    print(str(how_long) + " months is significant. Sorry to hear it. However, please return in " + str(3 - how_long) + " months.")
+    sys.exit()
+
+if how_long >= 3:
+    print(str(how_long) + " months is significant. Sorry to hear it. You can see the actions you can do by typing 'Try'.")
+    user_input = input()
+    if user_input.lower() != 'try':
+        print("Sorry, illegal input. Eliza is quitting; run Eliza again.")
+        sys.exit()
+    else:
+        for action in possible_actions:
+            print("Have you tried..." + action + " Please answer 'y' or 'n':")
+            user_response = input().lower()
+            if user_response == 'n':
+                actions_not_taken.append(action)
+
+        if actions_not_taken:
+            print("After careful analysis:), here is Eliza300's advice:")
+            for action in actions_not_taken:
+                print(action)
+        else:
+            print("You've tried all the suggested actions! Great job!")
